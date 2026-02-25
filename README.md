@@ -1,10 +1,17 @@
-MIE438 Project
-====================
+# Autonomous Two-Wheeled Balancing Robot
 
-This project was built and submitted as part of mie438: microprocessors and embedded microcontrollers in the third year of engsci robo.
+This repository contains the firmware and system architecture for a custom-built, self-stabilizing two-wheeled robot. Developed as part of the **MIE438: Microprocessors and Embedded Microcontrollers** course in the Robotics Engineering program at the University of Toronto.
 
-- we solve the classic inverted pendulum problem using an imu sensor and pid controller
-- the system is built on the esp platform and used the esp-idf for development (we just forked the template)
+## System Overview
+The objective of this project was to achieve dynamic stabilization through a robust integration of hardware mechanics, sensor fusion, and real-time embedded control. Built on the **ESP32 platform using the ESP-IDF framework**, the system leverages multi-core scheduling to ensure deterministic execution of sensor processing and motor actuation.
+
+### Key Features & Technical Implementations:
+* **Hardware-in-the-Loop Control:** Implemented a custom, gain-scheduled PID controller in C (featuring zero-crossing integral resets and error clamping). Parameters were empirically tuned alongside iterative mechanical redesigns to reject physical disturbances and mitigate motor vibrations.
+* **Sensor Fusion & Signal Processing:** Interfaced the MPU6050 IMU via fast-mode I2C (400kHz). Applied real-time digital signal processing, passing raw data through a 45-window Median Filter and a **1D Kalman Filter** to extract clean angular kinematics.
+* **RTOS Multi-Core Architecture:** Utilized **FreeRTOS** to pin critical tasks to separate cores. The **66Hz PID computation** and sensor polling (Core 0) run concurrently with the high-frequency software-PWM stepper motor actuation (Core 1), completely eliminating blocking delays.
+
+## Demo Video
+[Link to the demonstration video](https://www.youtube.com/shorts/LyMY3naC9-M)
 
 # ESP-IDF template app
 
