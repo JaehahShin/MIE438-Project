@@ -1,4 +1,4 @@
-# Autonomous Two-Wheeled Balancing Robot
+# Closed-Loop Balancing Robot
 
 This repository contains the firmware and system architecture for a custom-built, self-stabilizing two-wheeled robot. Developed as part of the **MIE438: Microprocessors and Embedded Microcontrollers** course in the Robotics Engineering program at the University of Toronto.
 
